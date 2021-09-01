@@ -8,9 +8,12 @@ description = "Whiteye language"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-env_logger = "0.9.0"
-thiserror = "1.0.25"
 anyhow = "1.0.40"
+clap = "2.20.3"
+cranelift = "0.69.0"
+cranelift-jit = "0.69.0"
+cranelift-module = "0.69.0"
+env_logger = "0.9.0"
 log = "0.4.0"
 nom = "6"
-clap = "2.20.3"
+thiserror = "1.0.25"

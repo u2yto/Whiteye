@@ -2,7 +2,9 @@ use anyhow::Result;
 use clap::{crate_description, crate_name, crate_version, App, Arg};
 use log::{debug, LevelFilter};
 use std::fs;
+use std::mem;
 
+use whiteye::ast::Ast;
 use whiteye::machine::Machine;
 use whiteye::parser::parse;
 
@@ -26,6 +28,18 @@ fn main() -> Result<()> {
     }
 
     logger.init();
+
+    let mut jit = whiteye::jit::JIT::default();
+
+    let code_ptr = jit.compile([Ast::Number(1)].to_vec()).unwrap();
+
+    jit.create_data("hello_string", "hello world!\0".as_bytes().to_vec())
+        .unwrap();
+
+    unsafe {
+        let code_fn = mem::transmute::<_, fn(()) -> ()>(code_ptr);
+        println!("{:?}", code_fn(()));
+    }
 
     if let Some(path) = matches.value_of("FILE") {
         let input = fs::read_to_string(path)?;

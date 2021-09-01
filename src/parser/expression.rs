@@ -73,11 +73,7 @@ fn parse_par_num_var(input: &str) -> IResult<&str, Ast, VerboseError<&str>> {
 }
 
 fn parse_parentheses(input: &str) -> IResult<&str, Ast, VerboseError<&str>> {
-    delimited(
-        tag("("),
-        delimited(space0, parse_add_sub, space0),
-        tag(")"),
-    )(input)
+    delimited(tag("("), delimited(space0, parse_add_sub, space0), tag(")"))(input)
 }
 
 fn parse_number(input: &str) -> IResult<&str, Ast, VerboseError<&str>> {

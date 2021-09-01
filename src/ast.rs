@@ -1,4 +1,4 @@
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum ExprOpKind {
     EAdd,
     ESub,
@@ -6,18 +6,18 @@ pub enum ExprOpKind {
     EDiv,
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum UnaryOpKind {
     UPlus,
     UMinus,
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum VariableType {
     Int,
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum AssignmentOpKind {
     AEqual,
     AAdd,
@@ -26,7 +26,7 @@ pub enum AssignmentOpKind {
     ADiv,
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum Ast {
     Number(isize),
 

@@ -45,10 +45,12 @@ pub fn parse_variable_assignment(input: &str) -> IResult<&str, Ast, VerboseError
 pub fn parse_variable_name(input: &str) -> IResult<&str, &str, VerboseError<&str>> {
     let (input, variable_name) =
         is_a("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_")(input)?;
-    match is_a::<&str, &str, VerboseError<&str>>("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")(variable_name) {
+    match is_a::<&str, &str, VerboseError<&str>>(
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",
+    )(variable_name)
+    {
         Ok((_, _)) => Ok((input, variable_name)),
         Err(e) => Err(e),
-
     }
 }
 
